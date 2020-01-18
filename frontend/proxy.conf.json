@@ -1,0 +1,86 @@
+{
+  "/api/auth/refresh-token": {
+    "target": "http://127.0.0.1:8081/install",
+    "secure": false
+  },
+  "/api/auth/login": {
+    "target": "http://127.0.0.1:8081",
+    "secure": false
+  },
+  "/getcustomers": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getCustomerdevices": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getSearchdevices": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getSearchCdevices": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/api/auth/logout": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/devices": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getdevices": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getrecent": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/attribute": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getattribute": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getCattribute": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/api/settings": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/api/getSettings": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/api/alarminfo": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/sms": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/files": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/getRecentDevices": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/command": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  },
+  "/device": {
+    "target": "http://127.0.0.1:8080/install",
+    "secure": false
+  }
+}

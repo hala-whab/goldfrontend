@@ -1,0 +1,31 @@
+<div class="row" style="padding-left:25%;padding-top:2%">
+    <div>
+    <nb-card >
+        <nb-card-header>pay debt</nb-card-header>
+        <nb-card-body>
+        <nb-select name="Payment" id="Payment1" selected="-1" [(ngModel)]="payment1" style="padding-left:2%;margin-left:2%;margin-top:3%" [selected]="payment1" (selectedChange)="typeSelected1(payment1)" required>
+          <nb-option value="cash">cash</nb-option>
+          <nb-option value="Card">Card</nb-option>  
+          <nb-option value="Card & Cash">Card & Cash</nb-option>         
+         </nb-select>
+         <label>No Of grams Paid cash</label><input type="text" id="cash_weight1" [(ngModel)]="cash_weight1" nbInput fullWidth shape="rectangle" placeholder="No Of grams Paid cash"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+         <br/> 
+         <label>No Of grams Paid with card</label><input type="text"id="card_weight1" [(ngModel)]="card_weight1" nbInput fullWidth shape="rectangle" placeholder="No Of grams Paid Payment"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+         <nb-card>
+          <nb-card-header>Due Date</nb-card-header>
+          <nb-card-body>
+            <input nbInput id="due-date"
+                   placeholder="Due Date Debt"
+                   [nbDatepicker]="formpicker1"
+                   [(ngModel)]="Duedate">
+            <nb-datepicker id="data" #formpicker1 disabled></nb-datepicker>
+          </nb-card-body>
+        </nb-card>
+          <button  nbButton  (click)="submit()" shap="round" style="margin-bottom:4%; margin-left: 40%"> Pay </button>
+        </nb-card-body>
+      </nb-card>
+    </div>
+    </div>
+  
+
+  

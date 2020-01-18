@@ -1,0 +1,62 @@
+<div class="card" style="padding: 25px;">
+
+
+
+    <div class="p-auto">
+      <div class="table-responsive">
+  
+        <table class="table table-border table-sm">
+          <thead>
+            <tr>
+              <th>The credit is for</th>
+              <th>Amount</th>
+              <th>Type</th>
+              <th>Date</th>
+            </tr>
+            <tr>
+              <th><input type="text" name="creditor_name" [(ngModel)]="filter.creditor_name" (ngModelChange)="filterChange()"></th>
+              <th><input type="text" name="Amount" [(ngModel)]="filter.Amount" (ngModelChange)="filterChange()"></th>
+              <th><input type="text" name="Type" [(ngModel)]="filter.Type" (ngModelChange)="filterChange()"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let credit of pagedItems " (click)="gotocredit(credit)">
+                <td>{{credit.beneficial_name}}</td>
+              <td>{{credit.beneficial_amount}}</td>
+              <td>
+                {{credit.credit_type}
+              </td>
+              <td>
+                {{credit.benfit_date}}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot text>
+            <nav aria-label="pagination">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" (click)="setPage(pager.currentPage-1)">Previous</a>
+                </li>
+                <li class="page-item" [ngClass]="{'active': pager.currentPage===page}" *ngFor="let page of pager.pages">
+                  <span class="page-link" *ngIf="pager.currentPage===page">
+                    {{page}}
+                    <span class="sr-only">(current)</span>
+                  </span>
+                  <a class="page-link" (click)="setPage(page)" *ngIf="pager.currentPage!==page">{{page}}</a>
+                </li>
+  
+                <li class="page-item">
+                  <a class="page-link" (click)="setPage(pager.currentPage+1)">Next</a>
+                </li>
+              </ul>
+            </nav>
+  
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div>
+    <button (click)="back()" class="btn btn-success">back</button>
+  </div>

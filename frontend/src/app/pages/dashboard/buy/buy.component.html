@@ -1,0 +1,99 @@
+<div class="row" style="padding-left:25%;padding-top:2%">
+  <div>
+  <nb-card >
+    <nb-tabset fullWidth>   
+      <nb-tab tabTitle="Direct Transaction" >
+        <div class="slider-container" >
+          <label>Gram Type</label>
+          <nb-select id="Gram_Type"selected="1"style="padding-left:2%;margin-left:2%;margin-top:3%"[(ngModel)]="Gram_Type" [selected]="Gram_Type" (selectedChange)="gramtype(Gram_Type)" required>
+          <nb-option value="Kweitei">Kweitei</nb-option>
+                <nb-option value="Bahrani">Bahrani</nb-option>
+                <nb-option value="Sudanei">Sudanei</nb-option>
+                <nb-option value="Turkey">Turkey</nb-option>
+                <nb-option value="Used">Used</nb-option>
+          </nb-select>
+              <br/>
+              <label style="margin-right: 8%">Details</label> <input type="text" onkeypress="return (event.charCode > 31 && (event.charCode < 48 || event.charCode > 57))" id="Details"[(ngModel)]="Details" nbInput fullWidth shape="rectangle" placeholder="Details"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
+              <br/>
+              <label style="margin-right: 8%">weight</label> <input type="text" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)"   id="weight" [(ngModel)]="weight" nbInput fullWidth shape="rectangle" placeholder="weight"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
+              <br/>
+              <label style="margin-right: 3%">Payment</label>  
+              <nb-select name="Payment" id="Payment" selected="-1" [(ngModel)]="payment" style="padding-left:2%;margin-left:2%;margin-top:3%" [selected]="payment" (selectedChange)="typeSelected(payment)" required>
+                <nb-option value="cash">cash</nb-option>
+                <nb-option value="Card">Card</nb-option>  
+                <nb-option value="Card & Cash">Card & Cash</nb-option>         
+               </nb-select>
+              <br/>
+              <label>gram cash price</label><input id="cashprice" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)"  [(ngModel)]="cashprice" type="text" nbInput fullWidth shape="rectangle" placeholder="gram cash price"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+              <br/>
+              <label>gram card price</label><input id="cardprice" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)" [(ngModel)]="cardprice" type="text" nbInput fullWidth shape="rectangle" placeholder="gram card price"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+              <br/>
+              <label style="margin-right: 7%">No Of grams Paid cash</label><input type="text" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)"  id="cash_weight" [(ngModel)]="cash_weight" nbInput fullWidth shape="rectangle" placeholder="No Of grams Paid cash"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+              <br/> 
+              <label >No Of grams Paid with card</label><input type="text"id="card_weight" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)" [(ngModel)]="card_weight" nbInput fullWidth shape="rectangle" placeholder="No Of grams Paid Payment"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+              <button  nbButton  shap="round" (click)="submitD()"style="margin-bottom:4%; margin-left: 40%"> submit </button>
+              <br/>
+              <br/>
+              <br/>
+            </div>
+      </nb-tab>   
+        <nb-tab tabTitle="Transaction with debt">
+            <div class="slider-container" >
+                <label>Customer Number</label> <input type="text" [(ngModel)]="Customer_Number" id="Customer_Number" nbInput fullWidth placeholder="Customer id" style="width:30%;padding-left:2%;margin-left:2%;height:2%"> 
+              <br/>
+              <label>Gram Type</label>
+              <nb-select id="Gram_Type1"selected="1"style="padding-left:2%;margin-left:2%;margin-top:3%"[(ngModel)]="Gram_Type1" [selected]="Gram_Type1" (selectedChange)="gramtype1(Gram_Type1)" required>
+              <nb-option value="Kweitei">Kweitei</nb-option>
+                    <nb-option value="Bahrani">Bahrani</nb-option>
+                    <nb-option value="Sudanei">Sudanei</nb-option>
+                    <nb-option value="Turkey">Turkey</nb-option>
+                    <nb-option value="Used">Used</nb-option>
+              </nb-select>
+                  <br/>
+                  <label>Details</label> <input type="text" id="Details1"[(ngModel)]="Details1" nbInput fullWidth shape="rectangle" placeholder="Details"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
+                  <br/>
+                  <label>weight</label> <input type="text" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)" id="weight1" [(ngModel)]="weight1" nbInput fullWidth shape="rectangle" placeholder="weight"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
+                  <br/>
+                  <label>Payment</label>  
+                  <nb-select name="Payment" id="Payment1" selected="-1" [(ngModel)]="payment1" style="padding-left:2%;margin-left:2%;margin-top:3%" [selected]="payment1" (selectedChange)="typeSelected1(payment1)" required>
+                    <nb-option value="cash">cash</nb-option>
+                    <nb-option value="Card">Card</nb-option>  
+                    <nb-option value="Card & Cash">Card & Cash</nb-option>         
+                   </nb-select>
+                  <br/>
+                  <label>gram cash price</label><input id="cashprice1" [(ngModel)]="cashprice1"onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)" type="text" nbInput fullWidth shape="rectangle" placeholder="gram cash price"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+                  <br/>
+                  <label>gram card price</label><input id="cardprice1" [(ngModel)]="cardprice1" type="text" nbInput fullWidth shape="rectangle" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)" placeholder="gram card price"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+                  <br/>
+                  <label>No Of grams Paid cash</label><input type="text" id="cash_weight1" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)"[(ngModel)]="cash_weight1" nbInput fullWidth shape="rectangle" placeholder="No Of grams Paid cash"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+                 <br/> 
+                  <label>No Of grams Paid with card</label><input type="text"id="card_weight1" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)"[(ngModel)]="card_weight1" nbInput fullWidth shape="rectangle" placeholder="No Of grams Paid Payment"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+                  <br/>
+                <label>The Remaing weight</label> <input type="text" nbInput fullWidth shape="rectangle" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)" id="The_Remaing_weight" [(ngModel)]="The_Remaing_weight" placeholder="The Remaing weight"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
+                <br/>
+                  <label>gram cash price</label><input type="text" id="Rcashprice1" [(ngModel)]="Rcashprice1"  nbInput fullWidth shape="rectangle" onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)" placeholder="gram cash price"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
+                  <br/>
+                  <label>gram card price</label><input type="text" id="Rcardprice1"  onkeypress="return !(event.charCode > 31 && (event.charCode < 48 || event.charCode > 57) && event.charCode !=46)"[(ngModel)]="Rcardprice1" fullWidth shape="rectangle" placeholder="gram card price"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
+                  <br/>
+                  <br/>
+                  <nb-card>
+                      <nb-card-header>Due Date</nb-card-header>
+                      <nb-card-body>
+                        <input nbInput id="due-date1"
+                               placeholder="Due Date Debt"
+                               [nbDatepicker]="formpicker"
+                               [(ngModel)]="Duedate"  >
+                        <nb-datepicker id="data1" #formpicker disabled></nb-datepicker>
+                      </nb-card-body>
+                    </nb-card>
+                  <br/>
+                  <button  nbButton  shap="round" style="margin-bottom:4%; margin-left: 40%"(click)="RemaningSelected()"> submit </button>
+                  <br/>
+                  <br/>
+                  <br/>
+                </div>
+          </nb-tab>   
+    </nb-tabset> 
+  </nb-card>
+  </div>
+  </div>

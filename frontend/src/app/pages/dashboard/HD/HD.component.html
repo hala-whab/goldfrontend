@@ -1,0 +1,44 @@
+<nb-card size="large">
+
+  <div class="p-auto">
+    <div class="table-responsive">
+
+      <table class="table table-border table-sm">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Country</th>
+            <th>Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let hd of pagedItems " (click)="gotohdtrans(hd)">
+            <td>{{hd.name}}</td>
+            <td>{{hd.country}}</td>
+            <td>{{hd.amount}}</td>  
+          </tr>
+        </tbody>
+        <tfoot text>
+          <nav aria-label="pagination">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" (click)="setPage(pager.currentPage-1)">Previous</a>
+              </li>
+              <li class="page-item" [ngClass]="{'active': pager.currentPage===page}" *ngFor="let page of pager.pages">
+                <span class="page-link" *ngIf="pager.currentPage===page">
+                  {{page}}
+                  <span class="sr-only">(current)</span>
+                </span>
+                <a class="page-link" (click)="setPage(page)" *ngIf="pager.currentPage!==page">{{page}}</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="setPage(pager.currentPage+1)">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  </nb-card>

@@ -1,0 +1,47 @@
+<nb-card size="large">
+
+    <div class="p-auto">
+      <div class="table-responsive">
+        
+  <table class="table table-border table-sm">
+          <thead>
+            <tr>
+              <th>Number of grams paid</th>
+              <th>Cash paid</th>
+              <th>Card Paid</th>
+              <th>date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let tans of pagedItems ">
+              <td>{{tans.no_of_grams}}</td>
+              <td>{{tans.cash_paid}}</td>
+              <td> {{tans.card_paid}}</td>
+              <td>{{tans.date}}</td>
+            </tr>
+          </tbody>
+          <tfoot text>
+            <nav aria-label="pagination">
+              <ul class="pagination">
+                <li class="page-item">
+                  <a class="page-link" (click)="setPage(pager.currentPage-1)">Previous</a>
+                </li>
+                <li class="page-item" [ngClass]="{'active': pager.currentPage===page}" *ngFor="let page of pager.pages">
+                  <span class="page-link" *ngIf="pager.currentPage===page">
+                    {{page}}
+                    <span class="sr-only">(current)</span>
+                  </span>
+                  <a class="page-link" (click)="setPage(page)" *ngIf="pager.currentPage!==page">{{page}}</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" (click)="setPage(pager.currentPage+1)">Next</a>
+                </li>
+              </ul>
+            </nav>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <button  nbButton (click)="pay(debt)">Pay debt</button>
+
+    </nb-card>

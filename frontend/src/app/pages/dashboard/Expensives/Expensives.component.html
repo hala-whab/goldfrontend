@@ -1,0 +1,69 @@
+<nb-card size="large">
+
+  <div class="p-auto">
+    <div class="table-responsive">
+
+      <table class="table table-border table-sm">
+        <thead>
+          <tr>
+            <th>Customer Name</th>
+            <th>Transcation type</th>
+            <th>Money recived</th>
+            <th>Money Paid</th>
+            <th>Grams Recived</th>
+            <th>Grams sold</th>
+            <th>Employee</th>
+            <th>date</th>
+          </tr>
+          <tr>
+            <th><input type="text" name="name" [(ngModel)]="filter.name" (ngModelChange)="filterChange()"
+                placeholder="Name"></th>
+            <th><input type="text" name="nameId" [(ngModel)]="filter.Id" placeholder="Customer Id"
+                (ngModelChange)="filterChange()"></th>
+            <th>
+              <select name="attStatus" aria-placeholder="attStatus" [(ngModel)]="filter.type"
+                (ngModelChange)="filterChange()">
+                <option value="-1"></option>
+                <option value="Buy"> Buy </option>
+                <option value="Sell"> Sell </option>
+              </select>
+              <!-- <input type="text" name="attStatus" [(ngModel)]="filter.attStatus" placeholder="Status"
+                (ngModelChange)="filterChange()"> -->
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tans of pagedItems ">
+            <td>{{tans.Name}}</td>
+            <td>{{tans.Id}}</td>
+            <td> {{tans.type}}</td>
+            <td>{{tans.moneyrecived}}</td>
+            <td>{{tans.moneyPaid}}</td>
+            <td>{{tans.gramsrecived}}</td>
+            <td>{{tans.gramsPaid}}</td>   
+          </tr>
+        </tbody>
+        <tfoot text>
+          <nav aria-label="pagination">
+            <ul class="pagination">
+              <li class="page-item">
+                <a class="page-link" (click)="setPage(pager.currentPage-1)">Previous</a>
+              </li>
+              <li class="page-item" [ngClass]="{'active': pager.currentPage===page}" *ngFor="let page of pager.pages">
+                <span class="page-link" *ngIf="pager.currentPage===page">
+                  {{page}}
+                  <span class="sr-only">(current)</span>
+                </span>
+                <a class="page-link" (click)="setPage(page)" *ngIf="pager.currentPage!==page">{{page}}</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" (click)="setPage(pager.currentPage+1)">Next</a>
+              </li>
+            </ul>
+          </nav>
+
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  </nb-card>

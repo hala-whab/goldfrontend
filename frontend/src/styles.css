@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+@import '../node_modules/primeng/resources/components/table/table.css';
+@import '../node_modules/primeng/resources/components/button/button.css';
+@import '../node_modules/primeng/resources/components/common/common.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/primeng/resources/themes/nova-light/theme.css';
+@import '../node_modules/primeicons/primeicons.css';
+
