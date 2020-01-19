@@ -25,7 +25,17 @@ export class checkTransComponent implements OnDestroy {
   pager: any = {};
   pagedItems = [];
   filteredCustomers = [];
-
+ 
+  
+  // consumptionCols: any[] = [
+  //   { field: 'customer_name', header: 'Customer name' },
+  //   { field: 'weight', header: 'Grams bought' },
+  //   { field: 'gram_cash_price', header: 'cash Price' },
+  //   { field: 'gram_card_price', header: 'Card Price' },
+  //   { field: 'dept_grams', header: 'debt Grams' },
+  //   { field: 'remaning', header: 'Remaning' }
+  // ];
+   
   constructor(private tbService: TBService,
     private router: Router,
     private pagerService: PagingService,

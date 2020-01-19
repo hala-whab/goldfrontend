@@ -19,7 +19,7 @@ export class CustomerdebtComponent  {
   pagedItems = [];
   filteredCustomers = [];
   id:String;
-remaning :String;
+remaning :string;
 gram_card_price:String;
 gram_cash_price: String;
 
@@ -37,6 +37,7 @@ gram_cash_price: String;
     this.route.params.subscribe(param => {
       this.id = param.id;
       this.remaning=param.remaning;
+     
       this.gram_card_price=param.gram_card_price;
       this.gram_cash_price=param.gram_cash_price;
  this.tbService.getdebtdetails(this.id).subscribe(customers => {
@@ -46,7 +47,11 @@ gram_cash_price: String;
  this.setPage(1);
   });
 })
-  }
+ if (parseFloat(this.remaning) <=0){
+        var pay= <HTMLButtonElement>document.getElementById("pay");
+        pay.disabled=true;
+      }  
+}
 
 setPage(page: number) {
   this.pager = this.pagerService.getPager(this.filteredCustomers.length, page);

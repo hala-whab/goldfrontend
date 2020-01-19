@@ -8,6 +8,7 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+
   }
 
   .table-card,
@@ -73,7 +74,7 @@
   nb-icon.down {
     color: nb-theme(color-danger-default);
   }
-
+  
   nb-icon.up {
     color: nb-theme(color-success-default);
   }
@@ -87,4 +88,65 @@
       display: none;
     }
   }
+
+  .page-item.active .page-link
+  {
+    background-color: #555;
+    z-index: 1;
+    color: #fff;
+    border-color: #fff;
+
+  }
+
+  #customers {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th  {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #555;
+  color: white;
+}
+
+
+#customers th.search {
+  background-color: #ddd;
+
+}
+#button {
+
+  background-color: #555;
+  /* padding-left: 10%; */
+
+  width: 5em;
+  margin-left: 10%;
+  text-align: center;
+  height: 1.8em;
+  margin-top: .2em;
+}
+#text{
+  color: #ddd;
+  font-family: Open Sans, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin-top: -.2em;
+}
+
+
+
+
 }

@@ -4,6 +4,7 @@ import { NbThemeService, NbDateService } from '@nebular/theme';
 import { TBService } from '../../services/tb.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
+import { Parser } from '@angular/compiler';
 
 
 
@@ -64,6 +65,50 @@ currentTheme: string;
     this.Gram_Type1=event;
     console.log(this.Gram_Type)
     }
+    cash(){
+      if( parseFloat(this.cash_weight) > parseFloat(this.weight)){
+        this.showModal('Error','You have entered a wrong value for number of grams paid cash');
+        this.cash_weight=null;
+        this.card_weight=null;
+      }else{
+        this.card_weight=(parseFloat(this.weight)-parseFloat(this.cash_weight)).toString();
+      }
+    }
+    card(){
+      if( parseFloat(this.card_weight) > parseFloat(this.weight)){
+        this.showModal('Error','You have entered a wrong value for number of grams paid cash');
+        this.cash_weight=null;
+        this.card_weight=null;
+      }else{
+        this.cash_weight=(parseFloat(this.weight)-parseFloat(this.card_weight)).toString();
+      }
+    }
+
+
+    cash1(){
+      if( parseFloat(this.cash_weight1) > parseFloat(this.weight1)){
+        this.showModal('Error','You have entered a wrong value for number of grams paid cash');
+        this.cash_weight1=null;
+        this.card_weight1=null;
+      }
+    }
+    card1(){
+      if( parseFloat(this.card_weight1) > parseFloat(this.weight1)){
+        this.showModal('Error','You have entered a wrong value for number of grams paid cash');
+        this.cash_weight1=null;
+        this.card_weight1=null;
+      }
+    }
+
+    Remaing()
+    {
+      
+        this.The_Remaing_weight=(parseFloat(this.weight1)-parseFloat(this.card_weight1)-parseFloat(this.cash_weight1)).toString();
+      
+    }
+
+
+
     typeSelected(event: any) {
       this.payment=event;
       console.log(event);
@@ -128,7 +173,7 @@ currentTheme: string;
         var cardprice= <HTMLInputElement>document.getElementById("cardprice1");
         cardprice.disabled=true;
         var cash_weight= <HTMLInputElement>document.getElementById("cash_weight1");
-        cash_weight.disabled=true;
+        cash_weight.disabled=false;
         var card_weight= <HTMLInputElement>document.getElementById("card_weight1");
         card_weight.disabled=true;
         this.cardprice1='0';
@@ -143,7 +188,7 @@ currentTheme: string;
            var cash_weight= <HTMLInputElement>document.getElementById("cash_weight1");
            cash_weight.disabled=true;
            var card_weight= <HTMLInputElement>document.getElementById("card_weight1");
-           card_weight.disabled=true;
+           card_weight.disabled=false;
            this.cashprice1='0';
            this.cash_weight1='0';
            this.card_weight1='0';
@@ -157,12 +202,17 @@ currentTheme: string;
           var card_weight= <HTMLInputElement>document.getElementById("card_weight1");
           card_weight.disabled=false;
            }
- 
     }
     submitD(){
+      if(this.payment && this.weight&&this.Gram_Type &&this.card_weight&&this.cash_weight&&this.cashprice&&this.cardprice&&this.Details){
+
     this.service.Dpurchase(this.Gram_Type,this.Details,this.weight,this.payment,this.cardprice,this.cashprice,this.card_weight,this.card_weight).subscribe(()=>this.showModal('Buy','Okay'));
   this.service.updatesSaveWhenDerctbuy(this.Gram_Type,this.Details,this.weight,this.payment,this.cardprice,this.cashprice,this.card_weight,this.card_weight).subscribe(); 
-  }
+this.reset();
+}else{
+  this.showModal('Error','please enter all fields');
+}
+    }
   showModal(header: string, content: string) {
     const activeModal = this.modalService.open(ModalComponent, { size: 'sm', container: 'nb-layout' });
     activeModal.componentInstance.modalHeader = header;
@@ -170,13 +220,56 @@ currentTheme: string;
     return activeModal;
   }
     RemaningSelected(){
-      this.service.Dpurchase(this.Gram_Type1,this.Details1,this.weight1,this.payment1,this.cardprice1,this.cashprice1,this.card_weight1,this.card_weight1).subscribe(()=>this.showModal('Buy','Okay'));
+      var x=true;
+      if(this.payment1 && this.weight1&&this.Gram_Type1 && this.Duedate&&this.card_weight1&&this.cash_weight1&&this.Details1&&this.Customer_Number&&this.Rcardprice1&&this.Rcashprice1&&this.cashprice1&&this.cardprice1){
+ if(this.payment1="Card & Cash"){
+        if((parseFloat(this.card_weight1)+parseFloat(this.cash_weight1))>parseFloat(this.weight1))
+        {
+        console.log("am here");
+        this.showModal('Error','No of grams paid cash + No of grams paid with card greater than the total wwight bought')
+        this.card_weight1=null;
+        this.cash_weight1=null;
+        x=false;
+        }
+      }
+    if(x==true){
+      this.The_Remaing_weight=(parseFloat(this.weight1)-parseFloat(this.card_weight1)-parseFloat(this.cash_weight1)).toString();
+    this.service.Dpurchase(this.Gram_Type1,this.Details1,this.weight1,this.payment1,this.cardprice1,this.cashprice1,this.card_weight1,this.card_weight1).subscribe();
     console.log("card   "+this.cardprice1);
     
-      this.service.debtpurchase(this.Customer_Number,this.The_Remaing_weight,this.Rcashprice1,this.Rcardprice1,this.weight1,this.Duedate.getTime()).subscribe(()=>this.showModal('Buy','Okay'));
+    console.log("this.The_Remaing_weight "+this.The_Remaing_weight);
+    this.service.debtpurchase(this.Customer_Number,this.The_Remaing_weight,this.Rcashprice1,this.Rcardprice1,this.weight1,this.Duedate.getTime()).subscribe(()=>this.showModal('Buy','Okay'));
     this.service.updatesSaveWhenDebtpurshace(this.Gram_Type1,this.The_Remaing_weight,this.payment1,this.card_weight1,this.weight1,this.cash_weight1,this.cashprice1,this.cardprice1).subscribe();
-
+this.reset();
+  }
+    }else{
+      this.showModal('Error','please enter all data');
     }
+  }
+  reset()
+  {
+    this.payment=null;
+this.Gram_Type =null;
+this.Details=null;
+this.weight=null;
+this.cashprice=null;
+this.cardprice=null;
+this.cash_weight=null;
+this.card_weight=null;
+this.payment1=null;
+this.Gram_Type1 =null;
+this.Details1=null;
+this.weight1=null;
+this.cashprice1=null;
+this.cardprice1=null;
+this.Rcashprice1=null;
+this.Rcardprice1=null;
+this.cash_weight1=null;
+this.card_weight1=null;
+this.The_Remaing_weight =null;
+this.Balance_Payment =null;
+this.Customer_Number=null;
+  }
   ngOnDestroy() {
   }
 }

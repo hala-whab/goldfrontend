@@ -3,7 +3,7 @@
     <div class="p-auto">
       <div class="table-responsive">
   
-        <table class="table table-border table-sm">
+        <table id="customers">
           <thead>
             <tr>
               <th>Customer name</th>
@@ -12,12 +12,12 @@
               <th>Card Price</th>
               <th>debt Grams </th>
               <th>Remaning</th>            
-                <th>check details& pay</th>
+              <th>check details& pay</th>
             </tr>
             <tr>
-              <th><input type="text" name="customer_name" [(ngModel)]="filter.customer_name" placeholder="customer name"
+              <th class="search"><input type="text" name="customer_name" [(ngModel)]="filter.customer_name" placeholder="customer name"
                 (ngModelChange)="filterChange()"></th>
-              <th><input type="number" name="Grams_bought" [(ngModel)]="filter.Grams_bought" placeholder="Grams bought"
+              <th class="search"><input type="number" name="Grams_bought" [(ngModel)]="filter.Grams_bought" placeholder="Grams bought"
                   (ngModelChange)="filterChange()"></th>
             </tr>
           </thead>
@@ -29,11 +29,11 @@
               <td>{{debt.gram_card_price}}</td>
               <td>{{debt.dept_grams}}</td> 
               <td>{{debt.remaning}}</td>
-              <button  nbButton  shap="round" type="button" class="btn col-md-3 col-xs-12"  style="background-color:blue;width: 20%;"
-              (click)=" check(debt)">details</button>
+              <button  id="button"  shap="round" type="button" 
+              (click)=" check(debt)"><p id="text"> details</p></button>
             </tr>
           </tbody>
-          <tfoot text>
+          <tfoot text style="margin-top: 2em; margin-left: auto;margin-right: auto ">
             <nav aria-label="pagination">
               <ul class="pagination">
                 <li class="page-item">
@@ -51,8 +51,18 @@
                 </li>
               </ul>
             </nav>
+
+
+
+            
           </tfoot>
+
+
+
+
+
         </table>
       </div>
     </div>
     </nb-card>
+      

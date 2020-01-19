@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { Temperature, TemperatureHumidityData } from '../../../@core/data/temperature-humidity';
 import { takeWhile} from 'rxjs/operators';
@@ -6,6 +6,9 @@ import { forkJoin } from 'rxjs';
 import { TBService } from '../../services/tb.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDateService } from '@nebular/theme';
+import { runInThisContext } from 'vm';
+import { ModalComponent } from '../modal/modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngx-temperature',
@@ -29,7 +32,7 @@ max: Date;
 Duedate: Date;
 
   constructor(private service: TBService, private router: Router,protected dateService: NbDateService<Date> ,
-    private route: ActivatedRoute){
+    private route: ActivatedRoute, private modalservice: NgbModal){
       this.min = this.dateService.addDay(this.dateService.today(), -5);
       this.max = this.dateService.addDay(this.dateService.today(), 5);
     }
@@ -75,13 +78,32 @@ Duedate: Date;
         }
   submit()
   {
+    if(this.Duedate&&this.card_weight1&&this.cash_weight1&&this.payment1){
     var date=new Date();
    this.remaning=this.remaning-parseFloat(this.card_weight1)-parseFloat(this.cash_weight1);
    this.no_of_grams=parseFloat(this.card_weight1)+parseFloat(this.cash_weight1);
    this.cash_paid=parseFloat(this.cash_weight1)*parseFloat(this.gram_cash_price);
    this.card_paid=parseFloat(this.card_weight1)*parseFloat(this.gram_card_price);
+   if(this.remaning<0){
+     this.showModal('Error','please enter correct values');
+this.cash_weight1=null;
+this.card_weight1=null;
+this.Duedate=null;
+   }else{
+   this.service.addNewpaymentCustomer(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe(()=>this.showModal('payment','done :)'));
+  this.service.updatesSaveWhendebtpaid(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe();
+    this.router.navigate(['pages/dashboard/states']);
    
-   this.service.addNewpaymentCustomer(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe(()=>window.alert('okay'));
-  this.service.updatesSaveWhendebtpaid(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe(()=>window.alert('okay'));
+}
+  }else {
+    this.showModal('Error','Please enter all feilds');
   }
+}
+
+  showModal(header: string, content: string) {
+    const activeModal = this.modalservice.open(ModalComponent, { size: 'sm', container: 'nb-layout' });
+    activeModal.componentInstance.modalHeader = header;
+    activeModal.componentInstance.modalContent = content;
+    return activeModal;
+}
 }

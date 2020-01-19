@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { TBService } from '../../services/tb.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NbDateService } from '@nebular/theme';
+import { ModalComponent } from '../modal/modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngx-paytocustomer',
@@ -25,7 +27,7 @@ max: Date;
 Duedate: Date;
 
   constructor(private service: TBService, private router: Router,protected dateService: NbDateService<Date> ,
-    private route: ActivatedRoute){
+    private route: ActivatedRoute,private modalservice: NgbModal){
       this.min = this.dateService.addDay(this.dateService.today(), -5);
       this.max = this.dateService.addDay(this.dateService.today(), 5);
     }
@@ -76,8 +78,20 @@ Duedate: Date;
    this.no_of_grams=parseFloat(this.card_weight1)+parseFloat(this.cash_weight1);
    this.cash_paid=parseFloat(this.cash_weight1)*parseFloat(this.gram_cash_price);
    this.card_paid=parseFloat(this.card_weight1)*parseFloat(this.gram_card_price);
-  
+   if(this.remaning<0){
+     this.showModal('Error','please enter correct values');
+this.cash_weight1=null;
+this.card_weight1=null;
+this.Duedate=null;
+   }else{
    this.service.addNewdebtpaymentforCustomer(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe(()=>window.alert('okay'));
   this.service.updatesSaveWhenpurshaseloanpaid(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe(()=>window.alert('OKAY'));
   }
+}
+showModal(header: string, content: string) {
+  const activeModal = this.modalservice.open(ModalComponent, { size: 'sm', container: 'nb-layout' });
+  activeModal.componentInstance.modalHeader = header;
+  activeModal.componentInstance.modalContent = content;
+  return activeModal;
+}
 }
