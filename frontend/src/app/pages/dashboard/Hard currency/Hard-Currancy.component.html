@@ -7,31 +7,14 @@
        
             <label>Amount</label> <input type="text" nbInput fullWidth shape="rectangle" placeholder="amount"  [(ngModel)]="amount"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
             <br/>
-            <label>cash unit price</label> <input type="text" nbInput fullWidth shape="rectangle" id="cashprice" placeholder="cashprice" [(ngModel)]="cashprice"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
-            <br/>
-            <label>card unit price</label> <input type="text" nbInput fullWidth shape="rectangle" id="cardprice" placeholder="cardprice" [(ngModel)]="cardprice"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
-            <br/>
        <label>Paid cash</label><input type="text" nbInput fullWidth shape="rectangle" id="cashpaid" placeholder="cashpaid"[(ngModel)]="cashpaid"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
             <br/>
             <label>Paid card</label><input type="text" nbInput fullWidth shape="rectangle" id="cardpaid" placeholder="cardpaid"[(ngModel)]="cardpaid"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
             <br/>
-            <label>debt</label>
-        <input type="text" nbInput fullWidth shape="rectangle" id="debt" [(ngModel)]="debt"placeholder="debt"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
+              <br/>
             <br/>
-            <br/>
-            <nb-card>
-                <nb-card-header>Due Date</nb-card-header>
-                <nb-card-body>
-                  <input nbInput id="due-date"
-                         placeholder="Due Date Debt"
-                         [nbDatepicker]="formpicker1"
-                         [(ngModel)]="Duedate" disabled >
-                  <nb-datepicker id="data" #formpicker1 disabled></nb-datepicker>
-                </nb-card-body>
-              </nb-card>
-            <br/>
-            <br/>
-          <button  nbButton shap="round" style="margin-bottom:4%; margin-left: 40%"(click)="ss()"> submit </button>
+            
+          <button  nbButton shap="round" style="margin-bottom:4%; margin-left: 40%"(click)="sell()"> submit </button>
             <br/>
             <br/>
             <br/>
@@ -42,28 +25,13 @@
   
                     <label>Amount</label> <input type="text" nbInput fullWidth shape="rectangle" placeholder="amount"  [(ngModel)]="amount1"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
                     <br/>
-                    <label>cash unit price</label> <input type="text" nbInput fullWidth shape="rectangle" id="cashprice1" placeholder="cashprice" [(ngModel)]="cashprice1"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
-                    <br/>
-                    <label>card unit price</label> <input type="text" nbInput fullWidth shape="rectangle" id="cardprice1" placeholder="cardprice" [(ngModel)]="cardprice1"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
-                    <br/>
+            
                    <label>Paid cash</label><input type="text" nbInput fullWidth shape="rectangle" id="cashpaid1" placeholder="cashpaid"[(ngModel)]="cashpaid1"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
                     <br/>
                     <label>Paid card</label><input type="text" nbInput fullWidth shape="rectangle" id="cardpaid1" placeholder="caardpaid"[(ngModel)]="cardpaid1"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%">
                      <br/>
-                    <label>debt</label><input type="text" nbInput fullWidth shape="rectangle" id="debt1" [(ngModel)]="debt1"placeholder="debt1"style="width:30%;padding-left:2%;margin-left:2%;height:2%;margin-top:3%" disabled>
                     <br/>
-                    <nb-card>
-                        <nb-card-header>Due Date</nb-card-header>
-                        <nb-card-body>
-                          <input nbInput id="due-date1"
-                                 placeholder="Due Date Debt"
-                                 [nbDatepicker]="formpicker"
-                                 [(ngModel)]="Duedate1" disabled >
-                          <nb-datepicker id="data1" #formpicker disabled></nb-datepicker>
-                        </nb-card-body>
-                      </nb-card>
-                    <br/>
-                  <button  nbButton shap="round" style="margin-bottom:4%; margin-left: 40%"(click)="s()"> submit </button>
+                  <button  nbButton shap="round" style="margin-bottom:4%; margin-left: 40%"(click)="buy()"> submit </button>
                     <br/>
                     <br/>
                     <br/>

@@ -322,9 +322,23 @@ user:Usertype;
 				headers: {'Authorization':this.token},
 			});
 		}
+		DbuyHD(id: string,amount:string, 
+			cashpaid: string, cardpaid: string): Observable<any> {
+			console.log("direct sell employee in charge"+this.user.sub)
+				return this.http.post<any>('http://127.0.0.1:8081/DbuyHD', {
+				'hcid': id,
+				'amount':amount,
+				'cashpaid':cashpaid,
+				'cardpaid':cardpaid,
+				'date':new Date().getTime(),
+				'employee_in_charge':this.user.sub
+				}, {
+					headers: {'Authorization':this.token},
+				});
+			}
 
 	updatesavewhenDsellHD(cashpaid: string, cardpaid: string): Observable<any> {
-		console.log("direct sell employee in charge"+this.user.sub)
+		console.log("direct HD sell pppppp employee in charge"+this.user.sub)
 			return this.http.post<any>('http://127.0.0.1:8081/updatesavewhenDsellHD', {
 				'cashpaid':cashpaid,
 				'cardpaid':cardpaid,
@@ -334,6 +348,39 @@ user:Usertype;
 				headers: {'Authorization':this.token},
 			});
 	}
+	updatesavewhenDbuyHD(cashpaid: string, cardpaid: string): Observable<any> {
+		console.log("direct HD sell pppppp employee in charge"+this.user.sub)
+			return this.http.post<any>('http://127.0.0.1:8081/updatesavewhenDbuyHD', {
+				'cashpaid':cashpaid,
+				'cardpaid':cardpaid,
+			'date':new Date().getTime(),
+			'employee_in_charge':this.user.sub
+			}, {
+				headers: {'Authorization':this.token},
+			});
+	}
+
+	updateHdamountwhenDsell(id: string, amount: string): Observable<any> {
+		console.log("updateHdamountwhenDsell"+this.user.sub)
+			return this.http.post<any>('http://127.0.0.1:8081/updateHdamountwhenDsell', {
+				'hcid':id,
+				'amount':amount,
+			}, {
+				headers: {'Authorization':this.token},
+			});
+	}
+
+	updateHdamountwhenDbuy(id: string, amount: string): Observable<any> {
+		console.log("direct sell employee in charge"+this.user.sub)
+			return this.http.post<any>('http://127.0.0.1:8081/updateHdamountwhenDbuy', {
+				'hcid':id,
+				'amount':amount,
+			}, {
+				headers: {'Authorization':this.token},
+			});
+	}
+
+
 
 	DpurchaseHD(type: string,amount:string, payment: string,
 		cashprice: string, cardprice: string,paid:string): Observable<any> {
@@ -371,40 +418,40 @@ user:Usertype;
 				headers: {'Authorization':this.token},
 			});
 	}
-	DebtpurchaseHHD(Gram_Type: string, Details: string,
-		weight: string, Payment: string, gram_card_price: string, gram_cash_price: string,
-		No_Of_grams_Paid_cash: string, No_Of_grams_Paid_card: string): Observable<any> {
-		console.log("direct sell employee in charge"+this.user.sub)
-			return this.http.post<any>('http://127.0.0.1:8081/Dirctsell', {
-			'Gram_Type': Gram_Type,
-			'Details': Details,
-			'weight': weight,
-			'Payment': Payment,	'gram_card_price': gram_card_price,
-			'gram_cash_price': gram_cash_price,
-			'No_Of_grams_Paid_cash': No_Of_grams_Paid_cash,
-			'No_Of_grams_Paid_card': No_Of_grams_Paid_card,
-			'date':new Date().getTime(),
-			'employee_in_charge':this.user.sub
-			}, {
-				headers: {'Authorization':this.token},
-			});
-	}
-	updatesavewhenDebtpurchaseHHD(Gram_Type: string, Details: string,
-		weight: string, Payment: string, gram_card_price: string, gram_cash_price: string,
-		No_Of_grams_Paid_cash: string, No_Of_grams_Paid_card: string): Observable<any> {
-		console.log("direct sell employee in charge"+this.user.sub)
-			return this.http.post<any>('http://127.0.0.1:8081/Dirctsell', {
-			'Gram_Type': Gram_Type,
-			'Details': Details,
-			'weight': weight,
-			'Payment': Payment,	'gram_card_price': gram_card_price,
-			'gram_cash_price': gram_cash_price,
-			'No_Of_grams_Paid_cash': No_Of_grams_Paid_cash,
-			'No_Of_grams_Paid_card': No_Of_grams_Paid_card,
-			'date':new Date().getTime(),
-			'employee_in_charge':this.user.sub
-			}, {
-				headers: {'Authorization':this.token},
-			});
-	}
+	// DebtpurchaseHHD(Gram_Type: string, Details: string,
+	// 	weight: string, Payment: string, gram_card_price: string, gram_cash_price: string,
+	// 	No_Of_grams_Paid_cash: string, No_Of_grams_Paid_card: string): Observable<any> {
+	// 	console.log("direct sell employee in charge"+this.user.sub)
+	// 		return this.http.post<any>('http://127.0.0.1:8081/Dirctsell', {
+	// 		'Gram_Type': Gram_Type,
+	// 		'Details': Details,
+	// 		'weight': weight,
+	// 		'Payment': Payment,	'gram_card_price': gram_card_price,
+	// 		'gram_cash_price': gram_cash_price,
+	// 		'No_Of_grams_Paid_cash': No_Of_grams_Paid_cash,
+	// 		'No_Of_grams_Paid_card': No_Of_grams_Paid_card,
+	// 		'date':new Date().getTime(),
+	// 		'employee_in_charge':this.user.sub
+	// 		}, {
+	// 			headers: {'Authorization':this.token},
+	// 		});
+	// }
+	// updatesavewhenDebtpurchaseHHD(Gram_Type: string, Details: string,
+	// 	weight: string, Payment: string, gram_card_price: string, gram_cash_price: string,
+	// 	No_Of_grams_Paid_cash: string, No_Of_grams_Paid_card: string): Observable<any> {
+	// 	console.log("direct sell employee in charge"+this.user.sub)
+	// 		return this.http.post<any>('http://127.0.0.1:8081/Dirctsell', {
+	// 		'Gram_Type': Gram_Type,
+	// 		'Details': Details,
+	// 		'weight': weight,
+	// 		'Payment': Payment,	'gram_card_price': gram_card_price,
+	// 		'gram_cash_price': gram_cash_price,
+	// 		'No_Of_grams_Paid_cash': No_Of_grams_Paid_cash,
+	// 		'No_Of_grams_Paid_card': No_Of_grams_Paid_card,
+	// 		'date':new Date().getTime(),
+	// 		'employee_in_charge':this.user.sub
+	// 		}, {
+	// 			headers: {'Authorization':this.token},
+	// 		});
+	// }
 }

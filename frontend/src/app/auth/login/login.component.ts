@@ -1,5 +1,5 @@
 import { Component, ChangeDetectorRef, OnInit } from '@angular/core';
-import { NbLoginComponent } from '@nebular/auth';
+import { NbLoginComponent, NbAuthService } from '@nebular/auth';
 
 @Component({
   selector: 'login',

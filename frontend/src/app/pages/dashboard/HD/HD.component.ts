@@ -34,7 +34,7 @@ export class HDComponent {
      });
    }
    gotohdtrans(hd){
-    this.router.navigate(['pages/dashboard/Hard-Curency', hd.id]);
+    this.router.navigate(['pages/dashboard/Hard-Curency', hd.id,hd.amount]);
 
   }
      setPage(page: number) {

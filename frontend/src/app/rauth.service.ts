@@ -25,7 +25,7 @@ export class RauthService implements CanActivate {
     let expectedRole = '';
 console.log("scopes "+tokenPayload.scopes)
     for (let i = 0; i < expectedRoleArray.length; i++) {
-      if (expectedRoleArray[i] === tokenPayload.scopes) {
+      if ( tokenPayload.scopes.toString().includes(expectedRoleArray[i])) {
         expectedRole = tokenPayload.scopes;
       }
     }

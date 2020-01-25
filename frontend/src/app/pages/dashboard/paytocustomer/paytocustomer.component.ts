@@ -73,6 +73,8 @@ Duedate: Date;
         }
   submit()
   {
+    if(this.Duedate&&this.payment1&&this.card_weight1&&this.cash_weight1)
+    {
     var date=new Date();
    this.remaning=this.remaning-parseFloat(this.card_weight1)-parseFloat(this.cash_weight1);
    this.no_of_grams=parseFloat(this.card_weight1)+parseFloat(this.cash_weight1);
@@ -87,6 +89,9 @@ this.Duedate=null;
    this.service.addNewdebtpaymentforCustomer(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe(()=>window.alert('okay'));
   this.service.updatesSaveWhenpurshaseloanpaid(this.id,this.no_of_grams, (this.cash_paid).toString(),(this.card_paid).toString(),this.remaning,this.Duedate.getTime()).subscribe(()=>window.alert('OKAY'));
   }
+}else{
+  this.showModal('Error','please enter all data');
+}
 }
 showModal(header: string, content: string) {
   const activeModal = this.modalservice.open(ModalComponent, { size: 'sm', container: 'nb-layout' });

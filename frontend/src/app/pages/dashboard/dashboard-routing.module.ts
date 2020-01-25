@@ -150,7 +150,7 @@ const routes: Routes = [{
   component: ExpensivesComponent,
 },
 {
-  path: 'Hard-Curency/:id',
+  path: 'Hard-Curency/:id/:amount',
   canActivate: [RauthService],
   data: {
     expectedRole: ['ROLE_ADMIN','ROLE_USER'],
